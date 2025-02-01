@@ -6,10 +6,13 @@ A dataset of 40 individuals was considered (not available in the repository), ea
 
 <br><br>
 
-###Training phase:
-The implementation is based on principal component analysis. Each image is treated as a vector in an $R^N$ space, where N is the number of pixels (rows × columns). The principal components are then computed, which correspond to the eigenvectors of the covariance matrix in $R^{N \times N}$ of the centered image vectors. The covariance matrix will be $C=\frac{1/L} ΦΦ^T$. Since the number of images (LL) is smaller than the dimensions of the space (RN×NRN×N), there will be only LL significant eigenvectors {v1,…,vL}{v1​,…,vL​} instead of N2N2, while the remaining eigenvectors will have associated eigenvalues equal to zero.
+### Training phase:
+The implementation is based on principal component analysis. Each image is treated as a vector in an $R^N$ space, where N is the number of pixels (rows × columns). The principal components are then computed, which correspond to the eigenvectors of the covariance matrix in $R^{N \times N}$ of the centered image vectors. The training images will be firstly centerd $Φ_l=f_l- \hat{f}$ (where $\hat{f}$ is the mean face), and the covariance matrix will be $C=\frac{1}{L} ΦΦ^T$. Since the number of images (L) is smaller than the dimensions of the space (N×N), there will be only L significant eigenvectors ${v_1,…,v_L}$, while the remaining eigenvectors will have associated eigenvalues equal to zero. Subsequently, the images are projected onto a smaller subspace generated only by the first L′ selected principal components ${v_1,…,v_L′}$, known as the "eigenfaces" space U.
+
+<br><br>
 
 
-
+### Test phase:
+The automatic face recognition procedure follows. A new image $f_{new}$​ from the test set is first centered $Φ_{new}=f_{new}−\hat{f}$, then $Φ_{new}$​ is projected onto the eigenface subspace U, and the Euclidean distance $ϵ$ between $Φ_{new}$​ and its projection $UU^TΦ_{new}$​ is computed.
 
 
