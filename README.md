@@ -2,7 +2,7 @@
 ## Project for "Analisi tempo-frequenza e multiscala" (Course 2023/2024) 
 
 <br>
-The "Eigenfaces" algorithm works by projecting face images onto a subspace of principal components (eigenfaces) and classifying an unknown face by comparing it to known faces based on the minimum distance between projections. The goal is to determine whether the face matches an individual in a dataset. <br>
+The "Eigenfaces" algorithm works by projecting face images on a subspace of principal components (eigenfaces) and classifying an unknown face by comparing it to known faces based on the minimum distance between projections. The goal is to determine whether the face matches an individual in a dataset. <br>
 A dataset of 40 individuals was considered (not available in the repository), each with 10 available images. It was divided into a training set and a test set by partitioning the images into two subsets, selecting k images per subject for training and 10-k for testing.
 
 <br><br>
@@ -14,13 +14,13 @@ The implementation is based on principal component analysis. Each image is treat
 
 
 ### Test phase:
-The automatic face recognition procedure follows. A new image $f_{new}$​ from the test set is firstly centered $Φ_{new}=f_{new}−\hat{f}$, then $Φ_{new}$​ is projected onto the eigenface subspace U, and the Euclidean distance $ϵ$ between $Φ_{new}$​ and its projection $UU^TΦ_{new}$​ is computed. To identify the individual, the projection is compared to the mean projections of training images for each subject $Ω_k$​, assigning the identity based on the minimum distance $∥UU^T Φ_{new} − Ω_k∥^2$. If $ϵ<θ$, the face is recognized.
+The automatic face recognition procedure follows. A new image $f_{new}$​ from the test set is firstly centered $Φ_{new}=f_{new}−\hat{f}$, then $Φ_{new}$​ is projected on the eigenface subspace U, and the Euclidean distance $ϵ$ between $Φ_{new}$​ and its projection $UU^TΦ_{new}$​ is computed. If $ϵ<θ$, the face is recognized.To identify the individual, the projection is compared to the mean projections of training images for each subject $Ω_k$​, assigning the identity based on the minimum distance $∥UU^T Φ_{new} − Ω_k∥^2$. 
 
 
 <br><br>
 
 ### Implementation
-An unknown parameter to define is the number of principal components L′L′. An empirical method to determine it is by observing the plot of the eigenvalues in decreasing order and selecting the values around the "elbow", beyond which the associated eigenvectors will be less significant. 
+An unknown parameter to define is the number of principal components L′. An empirical method to determine it is by observing the plot of the eigenvalues in decreasing order and selecting the values around the "elbow", beyond which the associated eigenvectors will be less significant. 
 <br>
 ![immagine](https://github.com/user-attachments/assets/cc3e48d9-606a-4f2b-a8f3-5a3aaa071fe2)
 
