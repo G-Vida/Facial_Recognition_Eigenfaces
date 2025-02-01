@@ -13,6 +13,38 @@ The implementation is based on principal component analysis. Each image is treat
 
 
 ### Test phase:
-The automatic face recognition procedure follows. A new image $f_{new}$​ from the test set is first centered $Φ_{new}=f_{new}−\hat{f}$, then $Φ_{new}$​ is projected onto the eigenface subspace U, and the Euclidean distance $ϵ$ between $Φ_{new}$​ and its projection $UU^TΦ_{new}$​ is computed.
+The automatic face recognition procedure follows. A new image $f_{new}$​ from the test set is first centered $Φ_{new}=f_{new}−\hat{f}$, then $Φ_{new}$​ is projected onto the eigenface subspace U, and the Euclidean distance $ϵ$ between $Φ_{new}$​ and its projection $UU^TΦ_{new}$​ is computed. To identify the individual, the projection is compared to the mean projections of training images for each subject $Ω_k$​, assigning the identity based on the minimum distance $∥UU^T Φ_{new} − Ω_k∥^2$. If $ϵ<θ$, the face is recognized.
+
+
+<br><br>
+
+### Implementation
+An unknown parameter to define is the number of principal components L′L′. An empirical method to determine it is by observing the plot of the eigenvalues in decreasing order and selecting the values around the "elbow", beyond which the associated eigenvectors will be less significant. 
+<br>
+![immagine](https://github.com/user-attachments/assets/cc3e48d9-606a-4f2b-a8f3-5a3aaa071fe2)
+
+<br><br>
+And example of images representing the approximate faces of the first 4 individuals in the training set using L′=20 principal components, with k=6.
+<br>
+![immagine](https://github.com/user-attachments/assets/d483bd22-ddd1-44ae-aa26-7c5c90ef2583)
+
+<br><br>
+An additional parameter to define is the threshold $θ$, beyond which the subject is considered unknown. To determine it, a grid search can be performed by running the algorithm multiple times and varying the values of the parameters k, $θ$, and L′. By selecting and varying the parameters, it is possible to achieve a good percentage of correctly classified individuals. <br>
+
+The plots representing the (1) fraction of correctly classified test set images as θ varies and the (2) fraction of correctly classified test set images as L′ varies are below:
+<br>
+![immagine](https://github.com/user-attachments/assets/44ca11ea-145e-4e7b-bffd-f2a90f9b1be3)
+![immagine](https://github.com/user-attachments/assets/87d3bb75-0a53-466b-958a-22efd0f4035d)
+
+
+
+
+
+
+
+
+
+
+
 
 
